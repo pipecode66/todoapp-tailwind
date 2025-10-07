@@ -19,15 +19,15 @@ function init() {
     return;
   }
 
- function row(t){
+function row(t){
   const tr = document.createElement('tr');
   tr.innerHTML = `
-    <td>${t.id ?? ''}</td>
-    <td>${t.title ?? ''}</td>
-    <td>${t.isCompleted ? '✔️' : '⏳'}</td>
-    <td>
-      <button data-act="edit">Editar</button>
-      <button data-act="del">Eliminar</button>
+    <td class="py-2">${t.id ?? ''}</td>
+    <td class="py-2">${t.title ?? ''}</td>
+    <td class="py-2">${t.isCompleted ? '✔️' : '⏳'}</td>
+    <td class="py-2 space-x-2">
+      <button data-act="edit" class="px-3 py-1 rounded-xl bg-blue-600 hover:bg-blue-500 text-sm text-white border border-slate-700">Editar</button>
+      <button data-act="del"  class="px-3 py-1 rounded-xl bg-rose-600 hover:bg-rose-500 text-sm text-white border border-slate-700">Eliminar</button>
     </td>`;
   tr.dataset.id = t.id ?? '';
   return tr;
