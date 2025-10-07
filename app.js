@@ -33,21 +33,21 @@ function init() {
   return tr;
 }
 
-  async function refresh(){
-    listMsg.textContent = 'Cargando...';
-    console.log('[REFRESH] llamando /todos…');
-    try{
-      const raw = await listTodos();
-      const todos = Array.isArray(raw.data) ? raw.data : [];
-      console.log('[REFRESH] respuesta:', todos);
-      tbody.innerHTML = '';
-      todos.forEach(t => tbody.appendChild(row(t)));
-      listMsg.textContent = `Se cargaron ${todos.length} tareas.`;
-    }catch(e){
-      console.error('[REFRESH] error:', e);
-      listMsg.textContent = e.message;
-    }
+async function refresh(){
+  listMsg.textContent = 'Cargando...';
+  console.log('[REFRESH] llamando /todos…');
+  try{
+    const raw = await listTodos();
+    console.log('[REFRESH] respuesta:', raw);
+    const todos = Array.isArray(raw.data) ? raw.data : [];
+    tbody.innerHTML = '';
+    todos.forEach(t => tbody.appendChild(row(t)));
+    listMsg.textContent = `Se cargaron ${todos.length} tareas.`;
+  }catch(e){
+    console.error('[REFRESH] error:', e);
+    listMsg.textContent = e.message;
   }
+}
 
   form.addEventListener('submit', async (ev)=>{
     ev.preventDefault(); formMsg.textContent = '';
