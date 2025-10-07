@@ -37,9 +37,8 @@ async function refresh(){
   listMsg.textContent = 'Cargando...';
   console.log('[REFRESH] llamando /todos…');
   try{
-    const raw = await listTodos();
-    console.log('[REFRESH] respuesta:', raw);
-    const todos = Array.isArray(raw.data) ? raw.data : [];
+    const todos = await listTodos();
+    console.log('[REFRESH] tareas:', todos);
     tbody.innerHTML = '';
     todos.forEach(t => tbody.appendChild(row(t)));
     listMsg.textContent = `Se cargaron ${todos.length} tareas.`;
