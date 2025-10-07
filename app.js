@@ -37,7 +37,8 @@ function init() {
     listMsg.textContent = 'Cargando...';
     console.log('[REFRESH] llamando /todos…');
     try{
-      const todos = await listTodos();
+      const raw = await listTodos();
+      const todos = Array.isArray(raw.data) ? raw.data : [];
       console.log('[REFRESH] respuesta:', todos);
       tbody.innerHTML = '';
       todos.forEach(t => tbody.appendChild(row(t)));
